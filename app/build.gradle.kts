@@ -46,7 +46,9 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation("com.google.mlkit:face-detection:16.1.6")
+
+    // MediaPipe Vision Task Library
+    implementation("com.google.mediapipe:tasks-vision:0.10.14")
 
     implementation("androidx.camera:camera-core:1.5.2")
     implementation("androidx.camera:camera-camera2:1.5.2")

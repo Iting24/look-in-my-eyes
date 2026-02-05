@@ -12,15 +12,15 @@ class HeadsUpNotificationManager(private val context: Context) {
     private val notificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    fun showNotification() {
+    fun showNotification(message: String) { // Accept a custom message
         createNotificationChannel()
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.mipmap.ic_launcher) // Replace with a proper icon
-            .setContentTitle("距離過近")
-            .setContentText("請保持適當的手機使用距離，保護您的眼睛。")
+            .setSmallIcon(R.mipmap.ic_launcher) 
+            .setContentTitle("不良姿勢提醒") // More specific title
+            .setContentText(message) // Use the dynamic message
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setVibrate(longArrayOf(0, 500, 250, 500)) // Vibrate pattern
+            .setVibrate(longArrayOf(0, 500, 250, 500))
             .setAutoCancel(true)
             .build()
 
@@ -29,8 +29,8 @@ class HeadsUpNotificationManager(private val context: Context) {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Heads-Up Notifications"
-            val descriptionText = "Channel for important proximity warnings."
+            val name = "Posture Notifications"
+            val descriptionText = "Channel for important posture warnings."
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
@@ -40,7 +40,7 @@ class HeadsUpNotificationManager(private val context: Context) {
     }
 
     companion object {
-        private const val CHANNEL_ID = "heads_up_notification_channel"
+        private const val CHANNEL_ID = "posture_notification_channel"
         private const val NOTIFICATION_ID = 2
     }
 }
